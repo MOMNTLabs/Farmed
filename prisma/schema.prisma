@@ -1,0 +1,209 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RegulatoryType {
+  COMMON_PRODUCT
+  OTC_MEDICINE
+  PRESCRIPTION_MEDICINE
+  CONTROLLED_MEDICINE
+}
+
+enum OrderStatus {
+  NEW
+  UNDER_REVIEW
+  WAITING_PRESCRIPTION
+  APPROVED_BY_PHARMACIST
+  SEPARATING
+  OUT_FOR_DELIVERY
+  COMPLETED
+  CANCELED
+}
+
+enum DeliveryMethod {
+  DELIVERY
+  PICKUP
+}
+
+enum StockMovementType {
+  IN
+  OUT
+  ADJUSTMENT
+  ORDER_APPROVAL
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  statusHistory OrderStatusHistory[]
+}
+
+model PharmacySettings {
+  id                    String   @id @default(cuid())
+  tradeName             String   @default("Farmed")
+  legalName             String?
+  cnpj                  String?
+  address               String?
+  city                  String?
+  state                 String?
+  phone                 String?
+  whatsapp              String?
+  email                 String?
+  openingHours          String?
+  pharmacistName        String?
+  pharmacistCrf         String?
+  sanitaryLicense       String?
+  afe                   String?
+  instagram             String?
+  facebook              String?
+  institutionalText     String?
+  whatsappDefaultText   String?
+  sanitaryNotice        String?
+  hideControlledPublic  Boolean  @default(false)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+}
+
+model Brand {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  products  Product[]
+}
+
+model Product {
+  id                   String         @id @default(cuid())
+  commercialName       String
+  slug                 String         @unique
+  description          String
+  categoryId           String?
+  brandId              String?
+  activeIngredient     String?
+  presentation         String?
+  anvisaRegistration   String?
+  sku                  String?        @unique
+  barcode              String?
+  regulatoryType       RegulatoryType @default(COMMON_PRODUCT)
+  requiresPrescription Boolean        @default(false)
+  isControlled         Boolean        @default(false)
+  allowsOnlineOrder    Boolean        @default(true)
+  isPublicVisible      Boolean        @default(true)
+  price                Decimal        @db.Decimal(10, 2)
+  promotionalPrice     Decimal?       @db.Decimal(10, 2)
+  stock                Int            @default(0)
+  minimumStock         Int            @default(0)
+  imageUrl             String?
+  imageAlt             String?
+  internalNotes        String?
+  isActive             Boolean        @default(true)
+  isFeatured           Boolean        @default(false)
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+
+  category       Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  brand          Brand?          @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  orderItems     OrderItem[]
+  stockMovements StockMovement[]
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  whatsapp  String
+  cpf       String?
+  address   String
+  district  String
+  city      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+}
+
+model Order {
+  id                   String         @id @default(cuid())
+  number               String         @unique
+  customerId           String
+  status               OrderStatus    @default(NEW)
+  deliveryMethod       DeliveryMethod
+  address              String
+  district             String
+  city                 String
+  notes                String?
+  internalNotes        String?
+  needsPrescription    Boolean        @default(false)
+  prescriptionWillBeSent Boolean      @default(false)
+  subtotal             Decimal        @db.Decimal(10, 2)
+  stockDebitedAt       DateTime?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+
+  customer       Customer             @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  items          OrderItem[]
+  stockMovements StockMovement[]
+  statusHistory  OrderStatusHistory[]
+}
+
+model OrderItem {
+  id          String  @id @default(cuid())
+  orderId     String
+  productId   String
+  productName String
+  sku         String?
+  quantity    Int
+  unitPrice   Decimal @db.Decimal(10, 2)
+  total       Decimal @db.Decimal(10, 2)
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+}
+
+model StockMovement {
+  id          String            @id @default(cuid())
+  productId   String
+  orderId     String?
+  type        StockMovementType
+  quantity    Int
+  note        String?
+  createdAt   DateTime          @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+  order   Order?  @relation(fields: [orderId], references: [id], onDelete: SetNull)
+}
+
+model OrderStatusHistory {
+  id        String      @id @default(cuid())
+  orderId   String
+  from      OrderStatus?
+  to        OrderStatus
+  note      String?
+  userId    String?
+  createdAt DateTime    @default(now())
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user  User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
