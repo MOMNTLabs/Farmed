@@ -8,10 +8,13 @@ type BrandLogoClientProps = {
 };
 
 export function BrandLogoClient({ tradeName, compact }: BrandLogoClientProps) {
-  const [imageFailed, setImageFailed] = useState(false);
-  const imageSrc = compact ? "/brand/logo-icon.png" : "/brand/logo-horizontal.png";
+  const sources = compact
+    ? ["/brand/logo-icon.jpg", "/brand/logo-icon.png", "/brand/logo.svg"]
+    : ["/brand/logo-horizontal.svg", "/brand/logo.svg", "/brand/logo-horizontal.png"];
+  const [sourceIndex, setSourceIndex] = useState(0);
+  const imageSrc = sources[sourceIndex];
 
-  if (!imageFailed) {
+  if (imageSrc) {
     return (
       <span className="inline-flex items-center gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -19,7 +22,7 @@ export function BrandLogoClient({ tradeName, compact }: BrandLogoClientProps) {
           src={imageSrc}
           alt={tradeName}
           className={compact ? "h-10 w-10 rounded-md object-contain" : "h-10 max-w-48 object-contain"}
-          onError={() => setImageFailed(true)}
+          onError={() => setSourceIndex((current) => current + 1)}
         />
       </span>
     );
