@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { MessageCircle, ShieldCheck, Truck } from "lucide-react";
+import { Bath, Boxes, HeartPulse, MessageCircle, Pill, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { ProductCard } from "@/components/public/ProductCard";
 import { prisma } from "@/lib/db";
 import { getPharmacySettings } from "@/lib/settings";
@@ -75,10 +76,15 @@ export default async function HomePage() {
             Ver catálogo
           </Link>
         </div>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((category) => (
-            <Link key={category.id} href={`/produtos?categoria=${category.slug}`} className="panel p-4 font-semibold text-ink">
-              {category.name}
+            <Link
+              key={category.id}
+              href={`/produtos?categoria=${category.slug}`}
+              className="panel flex min-h-16 items-center gap-3 p-4 font-semibold text-ink transition hover:border-brand-200 hover:bg-brand-50"
+            >
+              <CategoryIcon name={category.name} />
+              <span>{category.name}</span>
             </Link>
           ))}
         </div>
@@ -95,4 +101,27 @@ export default async function HomePage() {
       </section>
     </div>
   );
+}
+
+function CategoryIcon({ name }: { name: string }) {
+  const Icon = getCategoryIcon(name);
+
+  return (
+    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-brand-100 text-brand-900">
+      <Icon size={19} strokeWidth={1.8} />
+    </span>
+  );
+}
+
+function getCategoryIcon(name: string): LucideIcon {
+  const normalized = name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+
+  if (normalized.includes("medic")) return Pill;
+  if (normalized.includes("dermo") || normalized.includes("cosmet")) return Sparkles;
+  if (normalized.includes("higiene")) return Bath;
+  if (normalized.includes("vitamina") || normalized.includes("suplement")) return HeartPulse;
+  return Boxes;
 }
