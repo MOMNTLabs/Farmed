@@ -49,6 +49,7 @@ As regras sao validadas no servidor em `src/lib/checkout.ts`; o front-end nao e 
 - Login em `/admin/login`.
 - Dashboard em `/admin`.
 - CRUD de produtos.
+- Importacao de produtos em lote por CSV no painel de produtos.
 - CRUD de categorias.
 - CRUD de marcas.
 - Pedidos com filtro por status e detalhe completo.
@@ -142,6 +143,59 @@ Rodar seed:
 ```bash
 npm run seed
 ```
+
+## Importacao de produtos
+
+No painel administrativo, acesse `/admin/produtos` e use o bloco "Importar produtos em lote".
+
+Fluxo recomendado:
+
+1. Baixe o modelo CSV em `/admin/produtos/modelo-importacao`.
+2. Abra no Excel, Google Sheets ou LibreOffice.
+3. Preencha uma linha por produto.
+4. Exporte ou salve como CSV.
+5. Importe o arquivo no painel.
+
+Colunas obrigatorias:
+
+- `commercialName`
+- `description`
+- `price`
+
+Colunas opcionais:
+
+- `slug`
+- `category`
+- `brand`
+- `activeIngredient`
+- `presentation`
+- `anvisaRegistration`
+- `sku`
+- `barcode`
+- `regulatoryType`
+- `requiresPrescription`
+- `isControlled`
+- `allowsOnlineOrder`
+- `isPublicVisible`
+- `promotionalPrice`
+- `stock`
+- `minimumStock`
+- `imageUrl`
+- `imageAlt`
+- `internalNotes`
+- `isActive`
+- `isFeatured`
+
+Valores aceitos para `regulatoryType`:
+
+- `COMMON_PRODUCT`
+- `OTC_MEDICINE`
+- `PRESCRIPTION_MEDICINE`
+- `CONTROLLED_MEDICINE`
+
+Booleanos aceitam `sim`, `nao`, `true`, `false`, `1` ou `0`.
+
+Produtos com o mesmo `slug` sao atualizados. Categoria e marca sao criadas automaticamente quando vierem no CSV.
 
 ## Railway
 
