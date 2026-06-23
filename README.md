@@ -223,9 +223,11 @@ Arquivos de marca esperados:
 
 - `public/brand/logo.svg`
 - `public/brand/logo-horizontal.svg`
-- `public/brand/logo-icon.jpg`
+- `public/brand/logo-icon.png`
 - `public/brand/favicon.ico`
-- `public/favicon.ico`
+- `public/favicon.png`
+
+O favicon ativo do site usa `public/brand/logo-icon.png`, com copia em `public/favicon.png` para fallback.
 
 Identidade visual inicial:
 

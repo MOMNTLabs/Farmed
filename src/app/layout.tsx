@@ -12,10 +12,11 @@ export const metadata: Metadata = {
   description: "Farmacia online com atendimento via WhatsApp",
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/brand/favicon.ico" }
+      { url: "/brand/logo-icon.png", type: "image/png" },
+      { url: "/favicon.png", type: "image/png" }
     ],
-    shortcut: "/favicon.ico"
+    shortcut: "/brand/logo-icon.png",
+    apple: "/brand/logo-icon.png"
   }
 };
 

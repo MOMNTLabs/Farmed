@@ -9,7 +9,7 @@ type BrandLogoClientProps = {
 
 export function BrandLogoClient({ tradeName, compact }: BrandLogoClientProps) {
   const sources = compact
-    ? ["/brand/logo-icon.jpg", "/brand/logo-icon.png", "/brand/logo.svg"]
+    ? ["/brand/logo-icon.png", "/brand/logo.svg"]
     : ["/brand/logo-horizontal.svg", "/brand/logo.svg", "/brand/logo-horizontal.png"];
   const [sourceIndex, setSourceIndex] = useState(0);
   const imageSrc = sources[sourceIndex];
