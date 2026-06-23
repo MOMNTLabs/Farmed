@@ -10,7 +10,7 @@ async function main() {
 
   await prisma.user.upsert({
     where: { email: adminEmail },
-    update: {},
+    update: { name: "Administrador", isActive: true },
     create: {
       name: "Administrador",
       email: adminEmail,
@@ -18,37 +18,41 @@ async function main() {
     }
   });
 
+  const settingsData = {
+    tradeName: "Farmed",
+    legalName: "Farmed Farmácia Ltda.",
+    cnpj: "00.000.000/0001-00",
+    address: "Rua Principal, 100",
+    city: "São Paulo",
+    state: "SP",
+    phone: "(11) 3000-0000",
+    whatsapp: process.env.PHARMACY_WHATSAPP || "5511999999999",
+    email: "contato@farmed.local",
+    openingHours: "Segunda a sexta, 8h às 19h. Sábado, 8h às 13h.",
+    pharmacistName: "Responsável Técnico",
+    pharmacistCrf: "CRF-SP 00000",
+    institutionalText:
+      "A Farmed atende a comunidade com produtos de saúde, higiene, beleza e medicamentos, combinando atendimento presencial com pedidos online via WhatsApp.",
+    whatsappDefaultText: "Olá, gostaria de atendimento da Farmed.",
+    sanitaryNotice:
+      "Medicamentos sujeitos a prescrição só serão dispensados após apresentação e avaliação da receita pelo farmacêutico."
+  };
+
   await prisma.pharmacySettings.upsert({
     where: { id: "default-settings" },
-    update: {},
+    update: settingsData,
     create: {
       id: "default-settings",
-      tradeName: "Farmed",
-      legalName: "Farmed Farmacia Ltda.",
-      cnpj: "00.000.000/0001-00",
-      address: "Rua Principal, 100",
-      city: "Sao Paulo",
-      state: "SP",
-      phone: "(11) 3000-0000",
-      whatsapp: process.env.PHARMACY_WHATSAPP || "5511999999999",
-      email: "contato@farmed.local",
-      openingHours: "Segunda a sexta, 8h as 19h. Sabado, 8h as 13h.",
-      pharmacistName: "Responsavel Tecnico",
-      pharmacistCrf: "CRF-SP 00000",
-      institutionalText:
-        "A Farmed atende a comunidade com produtos de saude, higiene, beleza e medicamentos, combinando atendimento presencial com pedidos online via WhatsApp.",
-      whatsappDefaultText: "Ola, gostaria de atendimento da Farmed.",
-      sanitaryNotice:
-        "Medicamentos sujeitos a prescricao so serao dispensados apos apresentacao e avaliacao da receita pelo farmaceutico."
+      ...settingsData
     }
   });
 
-  const categoryNames = ["Medicamentos", "Higiene", "Dermocosmeticos", "Vitaminas"];
+  const categoryNames = ["Medicamentos", "Higiene", "Dermocosméticos", "Vitaminas"];
   const categories = await Promise.all(
     categoryNames.map((name) =>
       prisma.category.upsert({
         where: { slug: slugify(name) },
-        update: {},
+        update: { name, isActive: true },
         create: { name, slug: slugify(name), isActive: true }
       })
     )
@@ -56,14 +60,14 @@ async function main() {
 
   const brand = await prisma.brand.upsert({
     where: { slug: "farmed" },
-    update: {},
+    update: { name: "Farmed", isActive: true },
     create: { name: "Farmed", slug: "farmed", isActive: true }
   });
 
   const products = [
     {
       commercialName: "Protetor Solar FPS 50",
-      description: "Protetor solar facial para uso diario.",
+      description: "Protetor solar facial para uso diário.",
       categoryId: categories[2].id,
       regulatoryType: RegulatoryType.COMMON_PRODUCT,
       price: "59.90",
@@ -73,7 +77,7 @@ async function main() {
     },
     {
       commercialName: "Paracetamol 750mg",
-      description: "Medicamento isento de prescricao para alivio de dor e febre, conforme orientacao de bula.",
+      description: "Medicamento isento de prescrição para alívio de dor e febre, conforme orientação de bula.",
       categoryId: categories[0].id,
       regulatoryType: RegulatoryType.OTC_MEDICINE,
       activeIngredient: "Paracetamol",
@@ -84,12 +88,12 @@ async function main() {
       isFeatured: true
     },
     {
-      commercialName: "Medicamento com prescricao exemplo",
-      description: "Produto demonstrativo sujeito a prescricao e avaliacao farmaceutica.",
+      commercialName: "Medicamento com prescrição exemplo",
+      description: "Produto demonstrativo sujeito a prescrição e avaliação farmacêutica.",
       categoryId: categories[0].id,
       regulatoryType: RegulatoryType.PRESCRIPTION_MEDICINE,
       requiresPrescription: true,
-      activeIngredient: "Principio ativo exemplo",
+      activeIngredient: "Princípio ativo exemplo",
       price: "42.90",
       stock: 10,
       minimumStock: 3,
@@ -111,16 +115,20 @@ async function main() {
   ];
 
   for (const product of products) {
+    const productData = {
+      ...product,
+      brandId: brand.id,
+      imageAlt: product.commercialName,
+      isActive: true,
+      isPublicVisible: true
+    };
+
     await prisma.product.upsert({
       where: { slug: slugify(product.commercialName) },
-      update: {},
+      update: productData,
       create: {
-        ...product,
-        slug: slugify(product.commercialName),
-        brandId: brand.id,
-        imageAlt: product.commercialName,
-        isActive: true,
-        isPublicVisible: true
+        ...productData,
+        slug: slugify(product.commercialName)
       }
     });
   }

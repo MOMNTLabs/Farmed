@@ -2,22 +2,22 @@ import type { Product, RegulatoryType } from "@prisma/client";
 
 export const regulatoryLabels: Record<RegulatoryType, string> = {
   COMMON_PRODUCT: "Produto comum",
-  OTC_MEDICINE: "Medicamento isento de prescricao",
-  PRESCRIPTION_MEDICINE: "Medicamento com prescricao",
+  OTC_MEDICINE: "Medicamento isento de prescrição",
+  PRESCRIPTION_MEDICINE: "Medicamento com prescrição",
   CONTROLLED_MEDICINE: "Medicamento controlado"
 };
 
 export function regulatoryNotice(product: Pick<Product, "regulatoryType" | "requiresPrescription" | "isControlled">) {
   if (product.regulatoryType === "CONTROLLED_MEDICINE" || product.isControlled) {
-    return "Produto controlado. Consulte a farmacia para orientacao e disponibilidade.";
+    return "Produto controlado. Consulte a farmácia para orientação e disponibilidade.";
   }
 
   if (product.regulatoryType === "PRESCRIPTION_MEDICINE" || product.requiresPrescription) {
-    return "A dispensacao depende da apresentacao e avaliacao da receita pelo farmaceutico.";
+    return "A dispensação depende da apresentação e avaliação da receita pelo farmacêutico.";
   }
 
   if (product.regulatoryType === "OTC_MEDICINE") {
-    return "Use medicamentos com responsabilidade. Em caso de duvida, fale com o farmaceutico.";
+    return "Use medicamentos com responsabilidade. Em caso de dúvida, fale com o farmacêutico.";
   }
 
   return null;

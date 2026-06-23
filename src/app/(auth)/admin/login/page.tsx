@@ -20,8 +20,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <BrandLogo href="/" />
         </div>
         <h1 className="text-center text-2xl font-bold text-ink">Entrar no painel</h1>
-        <p className="mt-2 text-center text-sm text-slate-600">Acesso administrativo da farmacia.</p>
-        {params.erro && <p className="mt-4 rounded-md bg-red-50 p-3 text-sm text-red-700">E-mail ou senha invalidos.</p>}
+        <p className="mt-2 text-center text-sm text-slate-600">Acesso administrativo da farmácia.</p>
+        {params.erro && <p className="mt-4 rounded-md bg-red-50 p-3 text-sm text-red-700">E-mail ou senha inválidos.</p>}
         <div className="mt-6 space-y-4">
           <div>
             <label className="label">E-mail</label>

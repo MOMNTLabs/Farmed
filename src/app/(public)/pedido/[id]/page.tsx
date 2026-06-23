@@ -13,12 +13,12 @@ type OrderPageProps = {
 
 const statusLabels = {
   NEW: "Novo",
-  UNDER_REVIEW: "Em analise",
+  UNDER_REVIEW: "Em análise",
   WAITING_PRESCRIPTION: "Aguardando receita",
-  APPROVED_BY_PHARMACIST: "Aprovado pelo farmaceutico",
+  APPROVED_BY_PHARMACIST: "Aprovado pelo farmacêutico",
   SEPARATING: "Separando",
   OUT_FOR_DELIVERY: "Saiu para entrega",
-  COMPLETED: "Concluido",
+  COMPLETED: "Concluído",
   CANCELED: "Cancelado"
 };
 
@@ -50,7 +50,7 @@ export default async function OrderPage({ params }: OrderPageProps) {
             <p className="text-sm text-slate-700">{order.customer.whatsapp}</p>
           </div>
           <div>
-            <h2 className="font-bold text-ink">Endereco</h2>
+            <h2 className="font-bold text-ink">Endereço</h2>
             <p className="mt-2 text-sm text-slate-700">
               {order.address}, {order.district}, {order.city}
             </p>
@@ -75,7 +75,7 @@ export default async function OrderPage({ params }: OrderPageProps) {
 
         {order.needsPrescription && (
           <p className="mt-5 rounded-md bg-amber-50 p-3 text-sm text-amber-800">
-            Este pedido contem produto que depende de receita e avaliacao farmaceutica.
+            Este pedido contém produto que depende de receita e avaliação farmacêutica.
           </p>
         )}
 
@@ -85,7 +85,7 @@ export default async function OrderPage({ params }: OrderPageProps) {
             Enviar pedido pelo WhatsApp
           </a>
           <Link href="/produtos" className="btn-secondary">
-            Voltar ao catalogo
+            Voltar ao catálogo
           </Link>
         </div>
       </div>

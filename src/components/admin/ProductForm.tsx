@@ -15,7 +15,7 @@ export function ProductForm({ product, categories, brands }: ProductFormProps) {
       <Field label="Nome comercial" name="commercialName" defaultValue={product?.commercialName} required />
       <Field label="Slug" name="slug" defaultValue={product?.slug} />
       <div className="md:col-span-2">
-        <label className="label">Descricao</label>
+        <label className="label">Descrição</label>
         <textarea name="description" required defaultValue={product?.description} className="field mt-1 min-h-28" />
       </div>
       <Select label="Categoria" name="categoryId" defaultValue={product?.categoryId || ""}>
@@ -34,33 +34,33 @@ export function ProductForm({ product, categories, brands }: ProductFormProps) {
           </option>
         ))}
       </Select>
-      <Field label="Principio ativo" name="activeIngredient" defaultValue={product?.activeIngredient || ""} />
-      <Field label="Apresentacao/concentracao" name="presentation" defaultValue={product?.presentation || ""} />
+      <Field label="Princípio ativo" name="activeIngredient" defaultValue={product?.activeIngredient || ""} />
+      <Field label="Apresentação/concentração" name="presentation" defaultValue={product?.presentation || ""} />
       <Field label="Registro Anvisa" name="anvisaRegistration" defaultValue={product?.anvisaRegistration || ""} />
-      <Field label="SKU/codigo interno" name="sku" defaultValue={product?.sku || ""} />
+      <Field label="SKU/código interno" name="sku" defaultValue={product?.sku || ""} />
       <Field label="Codigo de barras/EAN" name="barcode" defaultValue={product?.barcode || ""} />
-      <Select label="Tipo regulatorio" name="regulatoryType" defaultValue={product?.regulatoryType || "COMMON_PRODUCT"}>
+      <Select label="Tipo regulatório" name="regulatoryType" defaultValue={product?.regulatoryType || "COMMON_PRODUCT"}>
         {Object.values(RegulatoryType).map((value) => (
           <option key={value} value={value}>
             {value}
           </option>
         ))}
       </Select>
-      <Field label="Preco" name="price" type="number" step="0.01" defaultValue={product?.price?.toString() || "0"} required />
-      <Field label="Preco promocional" name="promotionalPrice" type="number" step="0.01" defaultValue={product?.promotionalPrice?.toString() || ""} />
+      <Field label="Preço" name="price" type="number" step="0.01" defaultValue={product?.price?.toString() || "0"} required />
+      <Field label="Preço promocional" name="promotionalPrice" type="number" step="0.01" defaultValue={product?.promotionalPrice?.toString() || ""} />
       <Field label="Estoque atual" name="stock" type="number" defaultValue={String(product?.stock ?? 0)} />
-      <Field label="Estoque minimo" name="minimumStock" type="number" defaultValue={String(product?.minimumStock ?? 0)} />
+      <Field label="Estoque mínimo" name="minimumStock" type="number" defaultValue={String(product?.minimumStock ?? 0)} />
       <Field label="URL da imagem principal" name="imageUrl" defaultValue={product?.imageUrl || ""} />
       <Field label="Texto alternativo da imagem" name="imageAlt" defaultValue={product?.imageAlt || ""} />
       <div className="md:col-span-2">
-        <label className="label">Observacoes internas</label>
+        <label className="label">Observações internas</label>
         <textarea name="internalNotes" defaultValue={product?.internalNotes || ""} className="field mt-1 min-h-24" />
       </div>
       <div className="grid gap-3 md:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
         <Check name="requiresPrescription" label="Exige receita" defaultChecked={product?.requiresPrescription} />
         <Check name="isControlled" label="Controlado" defaultChecked={product?.isControlled} />
         <Check name="allowsOnlineOrder" label="Permite pedido online" defaultChecked={product?.allowsOnlineOrder ?? true} />
-        <Check name="isPublicVisible" label="Visivel na loja" defaultChecked={product?.isPublicVisible ?? true} />
+        <Check name="isPublicVisible" label="Visível na loja" defaultChecked={product?.isPublicVisible ?? true} />
         <Check name="isActive" label="Ativo" defaultChecked={product?.isActive ?? true} />
         <Check name="isFeatured" label="Destaque" defaultChecked={product?.isFeatured} />
       </div>

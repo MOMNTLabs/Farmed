@@ -9,15 +9,15 @@ export default async function ContactPage() {
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold text-ink">Contato</h1>
       <div className="panel mt-6 grid gap-4 p-6 text-sm text-slate-700 sm:grid-cols-2">
-        <Info label="Endereco" value={settings.address} />
+        <Info label="Endereço" value={settings.address} />
         <Info label="Cidade/UF" value={[settings.city, settings.state].filter(Boolean).join(" / ")} />
         <Info label="Telefone" value={settings.phone} />
         <Info label="WhatsApp" value={settings.whatsapp} />
         <Info label="E-mail" value={settings.email} />
-        <Info label="Horario" value={settings.openingHours} />
+        <Info label="Horário" value={settings.openingHours} />
       </div>
       <a
-        href={whatsappUrl(settings.whatsapp, settings.whatsappDefaultText || "Ola, gostaria de atendimento.")}
+        href={whatsappUrl(settings.whatsapp, settings.whatsappDefaultText || "Olá, gostaria de atendimento.")}
         className="btn-primary mt-6"
         target="_blank"
         rel="noreferrer"

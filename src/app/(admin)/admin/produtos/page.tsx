@@ -25,7 +25,7 @@ export default async function AdminProductsPage({ searchParams }: AdminProductsP
       {(params.importados || params.erroImportacao) && (
         <div className={`mt-6 rounded-md p-4 text-sm ${params.erroImportacao ? "bg-amber-50 text-amber-800" : "bg-brand-100 text-brand-900"}`}>
           {params.importados && <p>{params.importados} produto(s) importado(s) ou atualizado(s).</p>}
-          {params.falhas && <p>{params.falhas} linha(s) nao foram importadas.</p>}
+          {params.falhas && <p>{params.falhas} linha(s) não foram importadas.</p>}
           {params.erroImportacao && <p>{params.erroImportacao}</p>}
         </div>
       )}
@@ -33,7 +33,7 @@ export default async function AdminProductsPage({ searchParams }: AdminProductsP
         <div>
           <h2 className="text-lg font-bold text-ink">Importar produtos em lote</h2>
           <p className="mt-1 text-sm text-slate-600">
-            Preencha uma planilha, exporte como CSV e importe aqui. Produtos com o mesmo slug serao atualizados.
+            Preencha uma planilha, exporte como CSV e importe aqui. Produtos com o mesmo slug serão atualizados.
           </p>
           <Link href="/admin/produtos/modelo-importacao" className="mt-3 inline-flex text-sm font-semibold text-brand-700">
             Baixar modelo CSV
@@ -51,7 +51,7 @@ export default async function AdminProductsPage({ searchParams }: AdminProductsP
               <th className="p-3">Produto</th>
               <th className="p-3">Categoria</th>
               <th className="p-3">Marca</th>
-              <th className="p-3">Preco</th>
+              <th className="p-3">Preço</th>
               <th className="p-3">Estoque</th>
               <th className="p-3">Online</th>
               <th className="p-3"></th>
@@ -65,7 +65,7 @@ export default async function AdminProductsPage({ searchParams }: AdminProductsP
                 <td className="p-3">{product.brand?.name}</td>
                 <td className="p-3">{formatCurrency((product.promotionalPrice ?? product.price).toString())}</td>
                 <td className="p-3">{product.stock}</td>
-                <td className="p-3">{product.allowsOnlineOrder ? "Sim" : "Nao"}</td>
+                <td className="p-3">{product.allowsOnlineOrder ? "Sim" : "Não"}</td>
                 <td className="flex gap-2 p-3">
                   <Link href={`/admin/produtos/${product.id}/editar`} className="btn-secondary">
                     Editar

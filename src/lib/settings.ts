@@ -12,9 +12,9 @@ export async function getPharmacySettings() {
       tradeName: "Farmed",
       whatsapp: process.env.PHARMACY_WHATSAPP,
       institutionalText:
-        "Farmacia brasileira com atendimento proximo, catalogo online e suporte farmaceutico para orientar sua compra com seguranca.",
+        "Farmácia brasileira com atendimento próximo, catálogo online e suporte farmacêutico para orientar sua compra com segurança.",
       sanitaryNotice:
-        "Medicamentos devem ser usados com orientacao adequada. A dispensacao de produtos sujeitos a prescricao depende da avaliacao do farmaceutico."
+        "Medicamentos devem ser usados com orientação adequada. A dispensação de produtos sujeitos a prescrição depende da avaliação do farmacêutico."
     }
   });
 }

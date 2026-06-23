@@ -36,7 +36,7 @@ export function BrandLogoClient({ tradeName, compact }: BrandLogoClientProps) {
       {!compact && (
         <span className="flex flex-col leading-tight">
           <span className="text-base font-bold text-ink">{tradeName}</span>
-          <span className="text-xs text-slate-500">Farmacia e atendimento online</span>
+          <span className="text-xs text-slate-500">Farmácia e atendimento online</span>
         </span>
       )}
     </span>

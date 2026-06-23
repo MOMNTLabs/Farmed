@@ -46,7 +46,7 @@ export function CheckoutClient() {
     setLoading(false);
 
     if (!response.ok || !result.orderId) {
-      setError(result.error || "Nao foi possivel criar o pedido.");
+      setError(result.error || "Não foi possível criar o pedido.");
       return;
     }
 
@@ -79,7 +79,7 @@ export function CheckoutClient() {
           <input name="cpf" className="field mt-1" />
         </div>
         <div className="sm:col-span-2">
-          <label className="label">Endereco completo</label>
+          <label className="label">Endereço completo</label>
           <input name="address" required className="field mt-1" />
         </div>
         <div>
@@ -99,10 +99,10 @@ export function CheckoutClient() {
         </div>
         <label className="mt-7 flex items-center gap-2 text-sm text-slate-700">
           <input type="checkbox" name="prescriptionWillBeSent" className="h-4 w-4" />
-          Enviarei receita quando necessario
+          Enviarei receita quando necessário
         </label>
         <div className="sm:col-span-2">
-          <label className="label">Observacoes</label>
+          <label className="label">Observações</label>
           <textarea name="notes" className="field mt-1 min-h-28" />
         </div>
         {error && <p className="rounded-md bg-red-50 p-3 text-sm text-red-700 sm:col-span-2">{error}</p>}
@@ -124,7 +124,7 @@ export function CheckoutClient() {
           <span>Subtotal</span>
           <strong>{formatCurrency(subtotal)}</strong>
         </div>
-        <p className="mt-3 text-xs text-slate-500">Nao ha pagamento online nesta versao.</p>
+        <p className="mt-3 text-xs text-slate-500">Não há pagamento online nesta versão.</p>
         <button disabled={loading} className="btn-primary mt-5 w-full">
           {loading ? "Criando pedido..." : "Finalizar pedido"}
         </button>

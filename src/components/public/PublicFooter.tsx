@@ -19,7 +19,7 @@ export async function PublicFooter() {
           <p>{settings.email}</p>
         </div>
         <div>
-          <p className="font-semibold text-ink">Informacoes sanitarias</p>
+          <p className="font-semibold text-ink">Informações sanitárias</p>
           <p className="mt-2">{settings.sanitaryNotice}</p>
           <div className="mt-4 flex gap-4 font-medium text-brand-700">
             <Link href="/sobre">Sobre</Link>

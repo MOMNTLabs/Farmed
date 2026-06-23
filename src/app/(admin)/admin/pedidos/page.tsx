@@ -50,7 +50,7 @@ export default async function OrdersPage({ searchParams }: OrdersPageProps) {
                 </td>
                 <td className="p-3">{order.customer.name}</td>
                 <td className="p-3">{order.status}</td>
-                <td className="p-3">{order.needsPrescription ? "Sim" : "Nao"}</td>
+                <td className="p-3">{order.needsPrescription ? "Sim" : "Não"}</td>
                 <td className="p-3">{formatCurrency(order.subtotal.toString())}</td>
                 <td className="p-3">{formatDateTime(order.createdAt)}</td>
               </tr>

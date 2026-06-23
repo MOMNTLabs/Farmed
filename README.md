@@ -1,6 +1,6 @@
 # Farmed
 
-Projeto inicial de e-commerce/recebimento de pedidos online para uma farmacia brasileira, com loja publica, carrinho, checkout sem pagamento online, pedido via WhatsApp e painel administrativo.
+Projeto inicial de e-commerce/recebimento de pedidos online para uma farmácia brasileira, com loja pública, carrinho, checkout sem pagamento online, pedido via WhatsApp e painel administrativo.
 
 ## Stack
 
@@ -9,31 +9,31 @@ Projeto inicial de e-commerce/recebimento de pedidos online para uma farmacia br
 - Tailwind CSS
 - PostgreSQL
 - Prisma ORM
-- Autenticacao administrativa com cookie HTTP-only assinado
-- Seed inicial com usuario administrador
+- Autenticação administrativa com cookie HTTP-only assinado
+- Seed inicial com usuário administrador
 - Preparado para deploy no Railway
 
 ## Funcionalidades
 
-### Loja publica
+### Loja Pública
 
 - Home com busca, categorias, produtos em destaque, bloco institucional e WhatsApp.
-- Catalogo em `/produtos` com busca por nome, principio ativo, categoria, marca e descricao.
-- Filtros por categoria, marca, preco maximo e disponibilidade.
-- Pagina de produto em `/produtos/[slug]`.
+- Catálogo em `/produtos` com busca por nome, princípio ativo, categoria, marca e descrição.
+- Filtros por categoria, marca, preço máximo e disponibilidade.
+- Página de produto em `/produtos/[slug]`.
 - Carrinho com adicionar, remover, alterar quantidade e subtotal.
 - Checkout sem pagamento online.
-- Criacao de pedido no banco e pagina `/pedido/[id]`.
-- Botao de WhatsApp com cliente, endereco, itens, quantidades, valores, observacoes e numero do pedido.
+- Criação de pedido no banco e página `/pedido/[id]`.
+- Botão de WhatsApp com cliente, endereço, itens, quantidades, valores, observações e número do pedido.
 
-### Regras regulatorias
+### Regras Regulatórias
 
 Cada produto possui `regulatoryType`:
 
 - `COMMON_PRODUCT`: permite pedido online.
-- `OTC_MEDICINE`: permite pedido online com aviso de uso responsavel.
-- `PRESCRIPTION_MEDICINE`: aparece no catalogo e informa que a dispensacao depende de receita e avaliacao farmaceutica.
-- `CONTROLLED_MEDICINE`: nao permite compra direta. Pode aparecer como consulta ou ser ocultado pelo administrador.
+- `OTC_MEDICINE`: permite pedido online com aviso de uso responsável.
+- `PRESCRIPTION_MEDICINE`: aparece no catálogo e informa que a dispensação depende de receita e avaliação farmacêutica.
+- `CONTROLLED_MEDICINE`: não permite compra direta. Pode aparecer como consulta ou ser ocultado pelo administrador.
 
 Campos usados nas regras:
 
@@ -42,25 +42,25 @@ Campos usados nas regras:
 - `allowsOnlineOrder`
 - `isControlled`
 
-As regras sao validadas no servidor em `src/lib/checkout.ts`; o front-end nao e fonte de verdade para preco, estoque ou permissao de compra.
+As regras são validadas no servidor em `src/lib/checkout.ts`; o front-end não é fonte de verdade para preço, estoque ou permissão de compra.
 
-### Painel administrativo
+### Painel Administrativo
 
 - Login em `/admin/login`.
 - Dashboard em `/admin`.
 - CRUD de produtos.
-- Importacao de produtos em lote por CSV no painel de produtos.
+- Importação de produtos em lote por CSV no painel de produtos.
 - CRUD de categorias.
 - CRUD de marcas.
 - Pedidos com filtro por status e detalhe completo.
-- Historico de status.
-- Baixa de estoque ao aprovar pelo farmaceutico ou concluir pedido.
-- Protecao contra baixa duplicada pelo campo `stockDebitedAt`.
-- Configuracoes da farmacia usadas no rodape, paginas institucionais e WhatsApp.
+- Histórico de status.
+- Baixa de estoque ao aprovar pelo farmacêutico ou concluir pedido.
+- Proteção contra baixa duplicada pelo campo `stockDebitedAt`.
+- Configurações da farmácia usadas no rodapé, páginas institucionais e WhatsApp.
 
 ## Rotas
 
-Publicas:
+Públicas:
 
 - `/`
 - `/produtos`
@@ -85,7 +85,7 @@ Administrativas:
 - `/admin/estoque`
 - `/admin/configuracoes`
 
-## Variaveis de ambiente
+## Variáveis de Ambiente
 
 Copie `.env.example` para `.env` no ambiente local.
 
@@ -100,7 +100,7 @@ PHARMACY_WHATSAPP="5511999999999"
 
 Nunca commite `.env` real.
 
-## Como rodar localmente
+## Como Rodar Localmente
 
 ```bash
 npm install
@@ -116,7 +116,7 @@ Login inicial do admin criado pelo seed:
 - E-mail: `admin@farmed.local`
 - Senha: `Admin@123456`
 
-Se `ADMIN_EMAIL` e `ADMIN_PASSWORD` forem definidos no ambiente antes do seed, esses valores serao usados.
+Se `ADMIN_EMAIL` e `ADMIN_PASSWORD` forem definidos no ambiente antes do seed, esses valores serão usados.
 
 ## Prisma
 
@@ -132,7 +132,7 @@ Criar migration em desenvolvimento:
 npm run prisma:migrate
 ```
 
-Aplicar migrations em producao:
+Aplicar migrations em produção:
 
 ```bash
 npm run prisma:deploy
@@ -144,7 +144,7 @@ Rodar seed:
 npm run seed
 ```
 
-## Importacao de produtos
+## Importação de Produtos
 
 No painel administrativo, acesse `/admin/produtos` e use o bloco "Importar produtos em lote".
 
@@ -156,7 +156,7 @@ Fluxo recomendado:
 4. Exporte ou salve como CSV.
 5. Importe o arquivo no painel.
 
-Colunas obrigatorias:
+Colunas obrigatórias:
 
 - `commercialName`
 - `description`
@@ -193,19 +193,19 @@ Valores aceitos para `regulatoryType`:
 - `PRESCRIPTION_MEDICINE`
 - `CONTROLLED_MEDICINE`
 
-Booleanos aceitam `sim`, `nao`, `true`, `false`, `1` ou `0`.
+Booleanos aceitam `sim`, `não`, `true`, `false`, `1` ou `0`.
 
-Produtos com o mesmo `slug` sao atualizados. Categoria e marca sao criadas automaticamente quando vierem no CSV.
+Produtos com o mesmo `slug` são atualizados. Categoria e marca são criadas automaticamente quando vierem no CSV.
 
 ## Railway
 
 1. Crie um projeto no Railway.
 2. Adicione um banco PostgreSQL.
-3. Configure `DATABASE_URL` usando a variavel fornecida pelo Railway.
+3. Configure `DATABASE_URL` usando a variável fornecida pelo Railway.
 4. Configure `NEXTAUTH_SECRET` com um segredo longo.
-5. Configure `NEXTAUTH_URL` com a URL publica do app.
+5. Configure `NEXTAUTH_URL` com a URL pública do app.
 6. Configure `ADMIN_EMAIL`, `ADMIN_PASSWORD` e `PHARMACY_WHATSAPP`.
-7. Use os scripts padrao:
+7. Use os scripts padrão:
    - Build: `npm run build`
    - Start: `npm run start`
 8. Antes do primeiro start definitivo, rode:
@@ -215,7 +215,7 @@ npm run prisma:deploy
 npm run seed
 ```
 
-O arquivo `railway.json` ja define build e start para Nixpacks.
+O arquivo `railway.json` já define build e start para Nixpacks.
 
 ## Imagens
 
@@ -227,7 +227,7 @@ Arquivos de marca esperados:
 - `public/brand/favicon.ico`
 - `public/favicon.png`
 
-O favicon ativo do site usa `public/brand/logo-icon.png`, com copia em `public/favicon.png` para fallback.
+O favicon ativo do site usa `public/brand/logo-icon.png`, com cópia em `public/favicon.png` para fallback.
 
 Identidade visual inicial:
 
@@ -235,14 +235,14 @@ Identidade visual inicial:
 - `#8fbbff`
 - `#c7ddff`
 
-Quando nao existirem, a interface usa fallback textual com o nome da farmacia.
+Quando não existirem, a interface usa fallback textual com o nome da farmácia.
 
 Produtos usam:
 
 - `imageUrl`
 - `imageAlt`
 
-O admin cadastra URL manual. O projeto nao salva imagem no banco e nao depende do filesystem local do Railway. A troca futura para Cloudinary, Supabase Storage, S3/R2 ou Railway Storage Buckets pode ser feita mantendo `imageUrl`.
+O admin cadastra URL manual. O projeto não salva imagem no banco e não depende do filesystem local do Railway. A troca futura para Cloudinary, Supabase Storage, S3/R2 ou Railway Storage Buckets pode ser feita mantendo `imageUrl`.
 
 ## Scripts
 
@@ -256,11 +256,11 @@ npm run prisma:deploy
 npm run seed
 ```
 
-## Observacoes de seguranca
+## Observações de Segurança
 
-- Senhas sao armazenadas com hash `bcryptjs`.
-- Sessao administrativa usa cookie HTTP-only assinado.
-- Rotas administrativas sao protegidas por layout server-side.
-- Checkout recalcula preco, estoque e regras regulatorias no servidor.
-- Variaveis sensiveis nao sao expostas ao cliente.
-- Pagamento online nao foi implementado nesta primeira versao.
+- Senhas são armazenadas com hash `bcryptjs`.
+- Sessão administrativa usa cookie HTTP-only assinado.
+- Rotas administrativas são protegidas por layout server-side.
+- Checkout recalcula preço, estoque e regras regulatórias no servidor.
+- Variáveis sensíveis não são expostas ao cliente.
+- Pagamento online não foi implementado nesta primeira versão.

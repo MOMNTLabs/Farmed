@@ -52,7 +52,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div>
           <h1 className="text-3xl font-bold text-ink">Produtos</h1>
-          <p className="mt-2 text-slate-600">Busque por nome, principio ativo, categoria, marca ou descricao.</p>
+          <p className="mt-2 text-slate-600">Busque por nome, princípio ativo, categoria, marca ou descrição.</p>
         </div>
       </div>
 
@@ -76,9 +76,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         </select>
         <select name="disponibilidade" defaultValue={availability || ""} className="field">
           <option value="">Disponibilidade</option>
-          <option value="disponivel">Disponivel</option>
+          <option value="disponivel">Disponível</option>
         </select>
-        <input name="precoMax" type="number" step="0.01" defaultValue={params.precoMax || ""} placeholder="Preco maximo" className="field" />
+        <input name="precoMax" type="number" step="0.01" defaultValue={params.precoMax || ""} placeholder="Preço máximo" className="field" />
         <button className="btn-primary md:col-span-4">Aplicar filtros</button>
       </form>
 

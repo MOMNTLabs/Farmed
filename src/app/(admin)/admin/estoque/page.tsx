@@ -46,12 +46,12 @@ export default async function StockPage() {
               ))}
             </tbody>
           </table>
-          {products.length === 0 && <p className="mt-4 text-sm text-slate-600">Nenhum produto abaixo do estoque minimo.</p>}
+          {products.length === 0 && <p className="mt-4 text-sm text-slate-600">Nenhum produto abaixo do estoque mínimo.</p>}
         </div>
       </section>
 
       <section className="panel mt-6 p-5">
-        <h2 className="font-bold text-ink">Ultimas movimentacoes</h2>
+        <h2 className="font-bold text-ink">Últimas movimentações</h2>
         <div className="mt-4 divide-y divide-slate-200">
           {movements.map((movement) => (
             <div key={movement.id} className="grid gap-2 py-3 text-sm md:grid-cols-5">

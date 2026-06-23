@@ -9,7 +9,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Farmed",
-  description: "Farmacia online com atendimento via WhatsApp",
+  description: "Farmácia online com atendimento via WhatsApp",
   icons: {
     icon: [
       { url: "/brand/logo-icon.png", type: "image/png" },

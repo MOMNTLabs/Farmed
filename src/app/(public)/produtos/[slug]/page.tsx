@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <section>
         <div className="flex flex-wrap gap-2">
           {product.category && <Badge>{product.category.name}</Badge>}
-          <Badge tone={product.stock > 0 ? "positive" : "red"}>{product.stock > 0 ? "Disponivel" : "Indisponivel"}</Badge>
+          <Badge tone={product.stock > 0 ? "positive" : "red"}>{product.stock > 0 ? "Disponível" : "Indisponível"}</Badge>
         </div>
         <h1 className="mt-4 text-3xl font-bold text-ink">{product.commercialName}</h1>
         {product.brand && <p className="mt-2 text-sm text-slate-500">Marca/Fabricante: {product.brand.name}</p>}
@@ -49,9 +49,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         <dl className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
           {product.activeIngredient && <Info label="Principio ativo" value={product.activeIngredient} />}
-          {product.presentation && <Info label="Apresentacao" value={product.presentation} />}
+          {product.presentation && <Info label="Apresentação" value={product.presentation} />}
           {product.anvisaRegistration && <Info label="Registro Anvisa" value={product.anvisaRegistration} />}
-          <Info label="Tipo regulatorio" value={regulatoryLabels[product.regulatoryType]} />
+          <Info label="Tipo regulatório" value={regulatoryLabels[product.regulatoryType]} />
         </dl>
 
         {notice && <div className="mt-6 rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">{notice}</div>}
@@ -74,7 +74,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               />
             ) : (
               <a
-                href={whatsappUrl(settings.whatsapp, `Ola, gostaria de consultar o produto ${product.commercialName}.`)}
+                href={whatsappUrl(settings.whatsapp, `Olá, gostaria de consultar o produto ${product.commercialName}.`)}
                 className="btn-primary"
                 target="_blank"
                 rel="noreferrer"

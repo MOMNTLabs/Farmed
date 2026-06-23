@@ -15,7 +15,7 @@ export default async function AdminDashboardPage() {
 
   const cards = [
     ["Pedidos novos", newOrders],
-    ["Aguardando analise", reviewOrders],
+    ["Aguardando análise", reviewOrders],
     ["Estoque baixo", lowStock],
     ["Produtos ativos", activeProducts],
     ["Faturamento estimado", formatCurrency(revenue._sum.subtotal?.toString() || 0)]

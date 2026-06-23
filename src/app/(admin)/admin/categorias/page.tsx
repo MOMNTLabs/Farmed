@@ -10,7 +10,7 @@ export default async function CategoriesPage() {
       <form action={saveCategory} className="panel mt-6 grid gap-4 p-5 md:grid-cols-4">
         <input name="name" required placeholder="Nome" className="field" />
         <input name="slug" placeholder="Slug opcional" className="field" />
-        <input name="description" placeholder="Descricao opcional" className="field" />
+        <input name="description" placeholder="Descrição opcional" className="field" />
         <label className="flex items-center gap-2 text-sm">
           <input type="checkbox" name="isActive" defaultChecked />
           Ativa

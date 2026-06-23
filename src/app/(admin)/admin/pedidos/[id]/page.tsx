@@ -37,8 +37,8 @@ export default async function AdminOrderPage({ params }: AdminOrderPageProps) {
           <Info label="WhatsApp" value={order.customer.whatsapp} />
           <Info label="CPF" value={order.customer.cpf} />
           <Info label="Entrega" value={order.deliveryMethod === "DELIVERY" ? "Entrega" : "Retirada"} />
-          <Info label="Endereco" value={`${order.address}, ${order.district}, ${order.city}`} />
-          <Info label="Precisa de receita" value={order.needsPrescription ? "Sim" : "Nao"} />
+          <Info label="Endereço" value={`${order.address}, ${order.district}, ${order.city}`} />
+          <Info label="Precisa de receita" value={order.needsPrescription ? "Sim" : "Não"} />
         </div>
 
         <div className="mt-6 divide-y divide-slate-200">
@@ -56,7 +56,7 @@ export default async function AdminOrderPage({ params }: AdminOrderPageProps) {
           <span>Subtotal</span>
           <strong>{formatCurrency(order.subtotal.toString())}</strong>
         </div>
-        {order.notes && <p className="mt-5 rounded-md bg-slate-50 p-3 text-sm text-slate-700">Observacoes: {order.notes}</p>}
+        {order.notes && <p className="mt-5 rounded-md bg-slate-50 p-3 text-sm text-slate-700">Observações: {order.notes}</p>}
       </section>
 
       <aside className="space-y-6">
@@ -70,8 +70,8 @@ export default async function AdminOrderPage({ params }: AdminOrderPageProps) {
               </option>
             ))}
           </select>
-          <textarea name="internalNotes" defaultValue={order.internalNotes || ""} placeholder="Observacao interna" className="field mt-3 min-h-24" />
-          <input name="note" placeholder="Nota para historico" className="field mt-3" />
+          <textarea name="internalNotes" defaultValue={order.internalNotes || ""} placeholder="Observação interna" className="field mt-3 min-h-24" />
+          <input name="note" placeholder="Nota para histórico" className="field mt-3" />
           <button className="btn-primary mt-4 w-full">Salvar status</button>
           <a
             href={whatsappUrl(settings.whatsapp, buildOrderWhatsappMessage(order))}
@@ -84,7 +84,7 @@ export default async function AdminOrderPage({ params }: AdminOrderPageProps) {
           </a>
         </form>
         <section className="panel p-5">
-          <h2 className="font-bold text-ink">Historico</h2>
+          <h2 className="font-bold text-ink">Histórico</h2>
           <div className="mt-4 space-y-3 text-sm">
             {order.statusHistory.map((history) => (
               <div key={history.id} className="border-l-2 border-brand-500 pl-3">

@@ -162,14 +162,14 @@ export async function importProducts(formData: FormData) {
   }
 
   if (file.size > 2 * 1024 * 1024) {
-    redirectImportError("O arquivo deve ter ate 2MB.");
+    redirectImportError("O arquivo deve ter até 2MB.");
   }
 
   const rows = parseCsv(await file.text());
   const [headers, ...dataRows] = rows;
 
   if (!headers?.length || dataRows.length === 0) {
-    redirectImportError("O CSV precisa ter cabecalho e pelo menos um produto.");
+    redirectImportError("O CSV precisa ter cabeçalho e pelo menos um produto.");
   }
 
   const normalizedHeaders = headers.map(normalizeHeader);
@@ -191,7 +191,7 @@ export async function importProducts(formData: FormData) {
     const price = getRowValue(row, "price");
 
     if (!commercialName || !description || !price) {
-      errors.push(`Linha ${rowNumber}: nome, descricao e preco sao obrigatorios.`);
+      errors.push(`Linha ${rowNumber}: nome, descrição e preço são obrigatórios.`);
       continue;
     }
 

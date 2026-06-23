@@ -27,19 +27,19 @@ export default async function HomePage() {
       <section className="bg-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-16">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-700">Farmacia brasileira online</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-brand-700">Farmácia brasileira online</p>
             <h1 className="mt-3 text-4xl font-bold leading-tight text-ink sm:text-5xl">
-              Compre ou reserve produtos da farmacia pelo WhatsApp.
+              Compre ou reserve produtos da farmácia pelo WhatsApp.
             </h1>
             <p className="mt-5 max-w-2xl text-lg text-slate-600">
-              Catalogo atualizado, regras sanitarias claras e atendimento direto da equipe da {settings.tradeName}.
+              Catálogo atualizado, regras sanitárias claras e atendimento direto da equipe da {settings.tradeName}.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link href="/produtos" className="btn-primary">
                 Ver produtos
               </Link>
               <a
-                href={whatsappUrl(settings.whatsapp, settings.whatsappDefaultText || "Ola, gostaria de atendimento.")}
+                href={whatsappUrl(settings.whatsapp, settings.whatsappDefaultText || "Olá, gostaria de atendimento.")}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-secondary"
@@ -52,13 +52,13 @@ export default async function HomePage() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="panel p-5">
               <ShieldCheck className="text-brand-600" />
-              <h2 className="mt-4 font-bold text-ink">Orientacao responsavel</h2>
+              <h2 className="mt-4 font-bold text-ink">Orientação responsável</h2>
               <p className="mt-2 text-sm text-slate-600">Avisos de receita e produtos controlados aparecem antes do pedido.</p>
             </div>
             <div className="panel p-5">
               <Truck className="text-brand-600" />
               <h2 className="mt-4 font-bold text-ink">Entrega ou retirada</h2>
-              <p className="mt-2 text-sm text-slate-600">O pedido chega para a farmacia com endereco, itens e observacoes.</p>
+              <p className="mt-2 text-sm text-slate-600">O pedido chega para a farmácia com endereço, itens e observações.</p>
             </div>
             <div className="panel p-5 sm:col-span-2">
               <h2 className="font-bold text-ink">{settings.tradeName}</h2>
@@ -72,7 +72,7 @@ export default async function HomePage() {
         <div className="flex items-center justify-between gap-4">
           <h2 className="text-2xl font-bold text-ink">Categorias principais</h2>
           <Link href="/produtos" className="text-sm font-semibold text-brand-700">
-            Ver catalogo
+            Ver catálogo
           </Link>
         </div>
         <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

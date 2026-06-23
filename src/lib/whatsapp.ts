@@ -19,7 +19,7 @@ export function buildOrderWhatsappMessage(order: OrderWithDetails) {
     `WhatsApp: ${order.customer.whatsapp}`,
     order.customer.cpf ? `CPF: ${order.customer.cpf}` : null,
     `Entrega: ${order.deliveryMethod === "DELIVERY" ? "Entrega" : "Retirada"}`,
-    `Endereco: ${order.address}, ${order.district}, ${order.city}`,
+    `Endereço: ${order.address}, ${order.district}, ${order.city}`,
     "",
     "Itens:",
     ...order.items.map(
@@ -30,8 +30,8 @@ export function buildOrderWhatsappMessage(order: OrderWithDetails) {
     ),
     "",
     `Subtotal: ${formatCurrency(order.subtotal.toString())}`,
-    order.prescriptionWillBeSent ? "Cliente informou que enviara receita." : null,
-    order.notes ? `Observacoes: ${order.notes}` : null
+    order.prescriptionWillBeSent ? "Cliente informou que enviará receita." : null,
+    order.notes ? `Observações: ${order.notes}` : null
   ].filter(Boolean);
 
   return lines.join("\n");

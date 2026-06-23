@@ -8,11 +8,11 @@ export default async function AboutPage() {
       <h1 className="text-3xl font-bold text-ink">Sobre a {settings.tradeName}</h1>
       <p className="mt-5 whitespace-pre-line text-slate-700">{settings.institutionalText}</p>
       <div className="panel mt-8 grid gap-4 p-5 sm:grid-cols-2">
-        <Info label="Razao social" value={settings.legalName} />
+        <Info label="Razão social" value={settings.legalName} />
         <Info label="CNPJ" value={settings.cnpj} />
-        <Info label="Responsavel tecnico" value={settings.pharmacistName} />
+        <Info label="Responsável técnico" value={settings.pharmacistName} />
         <Info label="CRF" value={settings.pharmacistCrf} />
-        <Info label="Licenca sanitaria" value={settings.sanitaryLicense} />
+        <Info label="Licença sanitária" value={settings.sanitaryLicense} />
         <Info label="AFE" value={settings.afe} />
       </div>
     </div>

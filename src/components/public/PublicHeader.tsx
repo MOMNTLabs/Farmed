@@ -23,7 +23,7 @@ export async function PublicHeader() {
               <ShoppingCart size={18} />
             </Link>
             <a
-              href={whatsappUrl(settings.whatsapp, settings.whatsappDefaultText || "Ola, gostaria de atendimento.")}
+              href={whatsappUrl(settings.whatsapp, settings.whatsappDefaultText || "Olá, gostaria de atendimento.")}
               className="btn-primary hidden sm:inline-flex"
               target="_blank"
               rel="noreferrer"
@@ -37,7 +37,7 @@ export async function PublicHeader() {
           <Search size={18} className="mt-0.5 text-slate-400" />
           <input
             name="q"
-            placeholder="Buscar por produto, principio ativo, marca ou categoria"
+            placeholder="Buscar por produto, princípio ativo, marca ou categoria"
             className="w-full bg-transparent px-3 text-sm outline-none"
           />
         </form>

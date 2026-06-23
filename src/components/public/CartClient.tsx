@@ -39,8 +39,8 @@ export function CartClient() {
   if (lines.length === 0) {
     return (
       <div className="panel p-8 text-center">
-        <h1 className="text-2xl font-bold text-ink">Seu carrinho esta vazio</h1>
-        <p className="mt-2 text-slate-600">Adicione produtos do catalogo para iniciar o pedido.</p>
+        <h1 className="text-2xl font-bold text-ink">Seu carrinho está vazio</h1>
+        <p className="mt-2 text-slate-600">Adicione produtos do catálogo para iniciar o pedido.</p>
         <Link href="/produtos" className="btn-primary mt-6">
           Ver produtos
         </Link>
@@ -59,8 +59,8 @@ export function CartClient() {
                 {line.name}
               </Link>
               <p className="mt-1 text-sm text-slate-600">{formatCurrency(line.price)}</p>
-              {line.quantity > line.stock && <p className="mt-2 text-sm text-red-600">Quantidade maior que estoque disponivel.</p>}
-              {!line.allowsOnlineOrder && <p className="mt-2 text-sm text-red-600">Produto nao permite pedido online.</p>}
+              {line.quantity > line.stock && <p className="mt-2 text-sm text-red-600">Quantidade maior que estoque disponível.</p>}
+              {!line.allowsOnlineOrder && <p className="mt-2 text-sm text-red-600">Produto não permite pedido online.</p>}
             </div>
             <div className="flex items-center gap-2">
               <button className="btn-secondary px-2" onClick={() => updateQuantity(line.productId, line.quantity - 1)} aria-label="Diminuir">
@@ -83,7 +83,7 @@ export function CartClient() {
           <span>Subtotal</span>
           <strong>{formatCurrency(subtotal)}</strong>
         </div>
-        <p className="mt-3 text-xs text-slate-500">Frete e disponibilidade final serao confirmados pela farmacia.</p>
+        <p className="mt-3 text-xs text-slate-500">Frete e disponibilidade final serão confirmados pela farmácia.</p>
         <Link href="/checkout" className={`mt-5 ${hasBlocked ? "btn-secondary pointer-events-none opacity-60" : "btn-primary"} w-full`}>
           Prosseguir para checkout
         </Link>

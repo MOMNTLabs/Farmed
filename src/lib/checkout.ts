@@ -5,9 +5,9 @@ import { canOrderOnline } from "@/lib/regulatory";
 
 export const checkoutSchema = z.object({
   customerName: z.string().min(3, "Informe o nome completo."),
-  whatsapp: z.string().min(10, "Informe um WhatsApp valido."),
+  whatsapp: z.string().min(10, "Informe um WhatsApp válido."),
   cpf: z.string().optional(),
-  address: z.string().min(5, "Informe o endereco."),
+  address: z.string().min(5, "Informe o endereço."),
   district: z.string().min(2, "Informe o bairro."),
   city: z.string().min(2, "Informe a cidade."),
   deliveryMethod: z.nativeEnum(DeliveryMethod),
@@ -20,7 +20,7 @@ export const checkoutSchema = z.object({
         quantity: z.coerce.number().int().positive()
       })
     )
-    .min(1, "O carrinho esta vazio.")
+    .min(1, "O carrinho está vazio.")
 });
 
 export async function createCheckoutOrder(input: z.infer<typeof checkoutSchema>) {
@@ -39,11 +39,11 @@ export async function createCheckoutOrder(input: z.infer<typeof checkoutSchema>)
   const orderItems = data.items.map((item) => {
     const product = productMap.get(item.productId);
     if (!product) {
-      throw new Error("Produto indisponivel.");
+      throw new Error("Produto indisponível.");
     }
 
     if (!canOrderOnline(product)) {
-      throw new Error(`${product.commercialName} nao permite pedido online.`);
+      throw new Error(`${product.commercialName} não permite pedido online.`);
     }
 
     if (item.quantity > product.stock) {
@@ -139,7 +139,7 @@ export async function debitOrderStock(orderId: string) {
           orderId: order.id,
           type: "ORDER_APPROVAL",
           quantity: -item.quantity,
-          note: `Baixa automatica do pedido ${order.number}`
+          note: `Baixa automática do pedido ${order.number}`
         }
       });
     }
