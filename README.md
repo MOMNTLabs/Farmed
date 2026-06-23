@@ -222,9 +222,16 @@ O arquivo `railway.json` ja define build e start para Nixpacks.
 Arquivos de marca esperados:
 
 - `public/brand/logo.svg`
-- `public/brand/logo-horizontal.png`
-- `public/brand/logo-icon.png`
+- `public/brand/logo-horizontal.svg`
+- `public/brand/logo-icon.jpg`
 - `public/brand/favicon.ico`
+- `public/favicon.ico`
+
+Identidade visual inicial:
+
+- branco
+- `#8fbbff`
+- `#c7ddff`
 
 Quando nao existirem, a interface usa fallback textual com o nome da farmacia.
 

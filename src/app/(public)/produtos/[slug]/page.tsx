@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <section>
         <div className="flex flex-wrap gap-2">
           {product.category && <Badge>{product.category.name}</Badge>}
-          <Badge tone={product.stock > 0 ? "green" : "red"}>{product.stock > 0 ? "Disponivel" : "Indisponivel"}</Badge>
+          <Badge tone={product.stock > 0 ? "positive" : "red"}>{product.stock > 0 ? "Disponivel" : "Indisponivel"}</Badge>
         </div>
         <h1 className="mt-4 text-3xl font-bold text-ink">{product.commercialName}</h1>
         {product.brand && <p className="mt-2 text-sm text-slate-500">Marca/Fabricante: {product.brand.name}</p>}

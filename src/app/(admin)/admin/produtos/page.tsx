@@ -23,7 +23,7 @@ export default async function AdminProductsPage({ searchParams }: AdminProductsP
         </Link>
       </div>
       {(params.importados || params.erroImportacao) && (
-        <div className={`mt-6 rounded-md p-4 text-sm ${params.erroImportacao ? "bg-amber-50 text-amber-800" : "bg-emerald-50 text-emerald-700"}`}>
+        <div className={`mt-6 rounded-md p-4 text-sm ${params.erroImportacao ? "bg-amber-50 text-amber-800" : "bg-brand-100 text-brand-900"}`}>
           {params.importados && <p>{params.importados} produto(s) importado(s) ou atualizado(s).</p>}
           {params.falhas && <p>{params.falhas} linha(s) nao foram importadas.</p>}
           {params.erroImportacao && <p>{params.erroImportacao}</p>}

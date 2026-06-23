@@ -24,7 +24,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
       <div className="flex flex-1 flex-col p-4">
         <div className="flex items-center justify-between gap-2">
-          <Badge tone={product.stock > 0 ? "green" : "red"}>{product.stock > 0 ? "Disponivel" : "Indisponivel"}</Badge>
+          <Badge tone={product.stock > 0 ? "positive" : "red"}>{product.stock > 0 ? "Disponivel" : "Indisponivel"}</Badge>
           {product.category && <span className="text-xs text-slate-500">{product.category.name}</span>}
         </div>
         <Link href={`/produtos/${product.slug}`} className="mt-3 text-base font-bold text-ink hover:text-brand-700">

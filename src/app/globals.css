@@ -37,7 +37,7 @@ button {
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:bg-slate-300;
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-brand-100 disabled:cursor-not-allowed disabled:bg-slate-300;
 }
 
 .btn-secondary {

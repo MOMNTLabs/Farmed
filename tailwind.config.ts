@@ -10,13 +10,13 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          50: "#eefdf6",
-          100: "#d6f8e7",
-          200: "#aeeccd",
-          500: "#16a86f",
-          600: "#0d8b5c",
-          700: "#0a6f4b",
-          900: "#0b3f30"
+          50: "#ffffff",
+          100: "#c7ddff",
+          200: "#8fbbff",
+          500: "#8fbbff",
+          600: "#8fbbff",
+          700: "#5f8ee2",
+          900: "#203a66"
         },
         ink: "#17211c"
       },

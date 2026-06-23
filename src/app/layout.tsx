@@ -11,7 +11,11 @@ export const metadata: Metadata = {
   title: "Farmed",
   description: "Farmacia online com atendimento via WhatsApp",
   icons: {
-    icon: "/brand/favicon.ico"
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/brand/favicon.ico" }
+    ],
+    shortcut: "/favicon.ico"
   }
 };
 
