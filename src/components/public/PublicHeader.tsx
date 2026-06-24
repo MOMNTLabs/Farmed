@@ -16,7 +16,6 @@ export async function PublicHeader() {
             <Link href="/produtos">Produtos</Link>
             <Link href="/sobre">Sobre</Link>
             <Link href="/contato">Contato</Link>
-            <Link href="/admin">Admin</Link>
           </nav>
           <div className="flex items-center gap-2">
             <Link href="/carrinho" className="btn-secondary px-3" aria-label="Abrir carrinho">
