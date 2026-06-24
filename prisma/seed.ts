@@ -10,7 +10,7 @@ async function main() {
 
   await prisma.user.upsert({
     where: { email: adminEmail },
-    update: { name: "Administrador", isActive: true },
+    update: { isActive: true },
     create: {
       name: "Administrador",
       email: adminEmail,
@@ -18,41 +18,41 @@ async function main() {
     }
   });
 
-  const settingsData = {
-    tradeName: "Farmed",
-    legalName: "Farmed Farmácia Ltda.",
-    cnpj: "00.000.000/0001-00",
-    address: "Rua Principal, 100",
-    city: "São Paulo",
-    state: "SP",
-    phone: "(11) 3000-0000",
-    whatsapp: process.env.PHARMACY_WHATSAPP || "5511999999999",
-    email: "contato@farmed.local",
-    openingHours: "Segunda a sexta, 8h às 19h. Sábado, 8h às 13h.",
-    pharmacistName: "Responsável Técnico",
-    pharmacistCrf: "CRF-SP 00000",
-    institutionalText:
-      "A Farmed atende a comunidade com produtos de saúde, higiene, beleza e medicamentos, combinando atendimento presencial com pedidos online via WhatsApp.",
-    whatsappDefaultText: "Olá, gostaria de atendimento da Farmed.",
-    sanitaryNotice:
-      "Medicamentos sujeitos a prescrição só serão dispensados após apresentação e avaliação da receita pelo farmacêutico."
-  };
-
-  await prisma.pharmacySettings.upsert({
-    where: { id: "default-settings" },
-    update: settingsData,
-    create: {
-      id: "default-settings",
-      ...settingsData
-    }
+  const existingSettings = await prisma.pharmacySettings.findUnique({
+    where: { id: "default-settings" }
   });
+
+  if (!existingSettings) {
+    await prisma.pharmacySettings.create({
+      data: {
+        id: "default-settings",
+        tradeName: "Farmed",
+        legalName: "Farmed Farmácia Ltda.",
+        cnpj: "00.000.000/0001-00",
+        address: "Rua Principal, 100",
+        city: "São Paulo",
+        state: "SP",
+        phone: "(11) 3000-0000",
+        whatsapp: process.env.PHARMACY_WHATSAPP || "5511999999999",
+        email: "contato@farmed.local",
+        openingHours: "Segunda a sexta, 8h às 19h. Sábado, 8h às 13h.",
+        pharmacistName: "Responsável Técnico",
+        pharmacistCrf: "CRF-SP 00000",
+        institutionalText:
+          "A Farmed atende a comunidade com produtos de saúde, higiene, beleza e medicamentos, combinando atendimento presencial com pedidos online via WhatsApp.",
+        whatsappDefaultText: "Olá, gostaria de atendimento da Farmed.",
+        sanitaryNotice:
+          "Medicamentos sujeitos a prescrição só serão dispensados após apresentação e avaliação da receita pelo farmacêutico."
+      }
+    });
+  }
 
   const categoryNames = ["Medicamentos", "Higiene", "Dermocosméticos", "Vitaminas"];
   const categories = await Promise.all(
     categoryNames.map((name) =>
       prisma.category.upsert({
         where: { slug: slugify(name) },
-        update: { name, isActive: true },
+        update: {},
         create: { name, slug: slugify(name), isActive: true }
       })
     )
@@ -60,7 +60,7 @@ async function main() {
 
   const brand = await prisma.brand.upsert({
     where: { slug: "farmed" },
-    update: { name: "Farmed", isActive: true },
+    update: {},
     create: { name: "Farmed", slug: "farmed", isActive: true }
   });
 
@@ -125,7 +125,7 @@ async function main() {
 
     await prisma.product.upsert({
       where: { slug: slugify(product.commercialName) },
-      update: productData,
+      update: {},
       create: {
         ...productData,
         slug: slugify(product.commercialName)
